@@ -1,0 +1,51 @@
+<div class="content-top">
+    <div>
+        <h1>{{ book.Name }}</h1>
+    </div>
+</div>
+<div class="product product-item" style="overflow: scroll">
+    <div class="container-fluid" ng-if="savedSuccessfully">
+        <h1>Записи</h1>
+        <div class="records">
+            <table class="table table-striped table-bordered sites">
+                <thead>
+                    <tr>
+                        <th>Дата измерения</th>
+                        <th>EEG 1</th>
+                        <th>EEG 2</th>
+                        <th>EEG 3</th>
+                        <th>EEG 4</th>
+                        <th>EEG 5</th>
+                        <th>EEG 6</th>
+                        <th>EEG 7</th>
+                        <th>EEG 8</th>
+                        <th>EEG 9</th>
+                        <th>EEG 10</th>
+                        <th>EEG 11</th>
+                        <th>EEG 12</th>
+                        <th>EEG 13</th>
+                        <th>EEG 14</th>
+                        <th>EEG 15</th>
+                        <th>EEG 16</th>
+                        <th>Результат</th>
+                        <th>Удаление</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="record in records">
+                        <td>{{record.Date}}</td>
+                        <td ng-repeat="param in record.Params">{{ param.Value }}</td>
+                        <td><span ng-if="!record.Result" class="label label-success">Здоров</span><span class="label label-danger" ng-if="record.Result">Болен</span></td>
+                        <td><button class="btn btn-danger" ng-click="delete(record.Id)">Удалить</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div ng-if="!savedSuccessfully">
+        <h2>Записи не найдены</h2>
+        <h3>Перейдите в раздел добавления <a href="/#/records/add/">новой записи</a></h3>
+    </div>
+
+</div>
